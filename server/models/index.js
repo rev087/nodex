@@ -5,13 +5,13 @@ var
   Sequelize = require('sequelize'),
   lodash = require('lodash'),
   sequelize = new Sequelize(
-    'kodex',
-    'rev087',
-    '1234',
+    CONFIG.db.database,
+    CONFIG.db.user,
+    CONFIG.db.pass,
     {
-      host: "localhost",
-      dialect: "postgres",
-      port: 5432
+      host: CONFIG.db.host,
+      dialect: CONFIG.db.dialect,
+      port: CONFIG.db.port
     }
     ),
   db = {};
