@@ -36,21 +36,23 @@ app.use(express.cookieSession({
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
 
+/*
 var options = {
 	// SSL
 	key: fs.readFileSync('./config/tls/' + app.get('env') + '/kodex-key.pem'),
 	cert: fs.readFileSync('./config/tls/' + app.get('env') + '/kodex-cert.pem'),
 	requestCert: true
 };
+*/
 
 // Development only
 if ('development' == app.get('env')) {
 	app.use(express.errorHandler());
 
 	// SSL
-	options.rejectUnauthorized = false;
-	options.requestCert = true;
-	options.agent = false;
+	//options.rejectUnauthorized = false;
+	//options.requestCert = true;
+	//options.agent = false;
 }
 
 // Routes
