@@ -1,0 +1,20 @@
+.box-sizing(@val) {
+	// content-box: default style, size includes only content
+	// padding-box: size includes the paddings
+	// border-box: size includes paddings and borders (IE quirks mode)
+	// inherit
+	-moz-box-sizing: @val;
+	-webkit-box-sizing: @val;
+	box-sizing: @val;
+}
+
+.user-select(@val) {
+	// none: prevents selection
+	// text: allows text selection
+	-webkit-touch-callout: @val;
+	-webkit-user-select: @val;
+	-khtml-user-select: @val;
+	-moz-user-select: @val;
+	-ms-user-select: @val;
+	user-select: @val;
+}

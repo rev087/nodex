@@ -1,0 +1,30 @@
+form.user-register(ng-controller="RegisterFormController" name="form")
+	h1 kodex.in
+	ol(flash-messages context="register.username")
+	div.field
+		ol.form-errors
+			li(ng-repeat="error in errors.username") {{error}}
+		label.sr-only(for="register-username") username
+		input(type="text", id="register-username", name="username",
+			placeholder="username", ng-model="user.username", ng-disabled="busy",
+			ng-class="{invalid:errors.username}")
+	div.field
+		ol.form-errors
+			li(ng-repeat="error in errors.email") {{error}}
+		label.sr-only(for="register-email") e-mail
+		input(type="email", id="register-email", name="email",
+			placeholder="e-mail", ng-model="user.email", ng-disabled="busy",
+			ng-class="{invalid:errors.email}")
+	div.field
+		ol.form-errors
+			li(ng-repeat="error in errors.password") {{error}}
+		label.sr-only(for="register-password") password
+		input(type="password", id="register-password", name="password",
+			placeholder="password", ng-model="user.password", ng-disabled="busy",
+			ng-class="{invalid:errors.password}")
+	div.field
+		button.wide(type="submit", ng-click="register()", ng-disabled="busy")
+			span(ng-hide="busy") register
+			i.fa.fa-refresh.fa-spin(ng-show="busy")
+		p.actions
+			a.register(href="/#/login") Already registered?

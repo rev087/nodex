@@ -1,0 +1,9 @@
+{
+	"verbose": true,
+	"ignore": [
+		"bower_components",
+		"client",
+		"public",
+		"Gruntfile.js"
+	]
+}

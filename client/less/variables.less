@@ -1,0 +1,54 @@
+// State colors
+@state-success: #15c815;
+@state-error: #cc3333;
+
+// Action colors
+@action-default: #15c815;
+
+// Forms, any context
+@form-outline: #96C0E6;
+
+// Context: document sheet, inputs
+@doc: #ffffff;
+@doc-muted: #f4f5f8;
+@doc-list-separator: #e8e9ed;
+@doc-text: #4d5262;
+@doc-text-light: #6b7289;
+@doc-text-placeholder: #afb3c1;
+
+// Context: Background
+@bg: #e8eaf1;
+@bg-text: #4d5262;
+
+// Context: Navigation
+@nav-bg: #2e323a;
+@nav-link: #989dac;
+
+// Links, any context
+@link: #3e8dff;
+
+// Typography
+@type-size: 16px;
+@type-line: @type-size * 1.5;
+
+// Animations
+@transition-duration-color: .2s;
+
+// Breakpoints
+@screen-small: 768px;
+@screen-medium: 992px;
+@screen-big: 1200px;
+
+// Media queries
+@media (max-width: (@screen-small - 1)) { // <= 767
+	// iPhone
+}
+@media (min-width: @screen-small) and (max-width: (@screen-medium - 1) ) { // 768 to 991
+	// iPad (vertical)
+}
+@media (min-width: @screen-medium) and (max-width: (@screen-big - 1)) { // 992 to 1199
+	// iPad (horizontal), desktops
+}
+@media (min-width: @screen-big) { // >= 1200
+	// Big desktops
+}

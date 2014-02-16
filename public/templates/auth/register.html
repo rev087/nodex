@@ -1,0 +1,30 @@
+
+<form ng-controller="RegisterFormController" name="form" class="user-register">
+  <h1>kodex.in</h1>
+  <ol flash-messages="flash-messages" context="register.username"></ol>
+  <div class="field">
+    <ol class="form-errors">
+      <li ng-repeat="error in errors.username">{{error}}</li>
+    </ol>
+    <label for="register-username" class="sr-only">username</label>
+    <input type="text" id="register-username" name="username" placeholder="username" ng-model="user.username" ng-disabled="busy" ng-class="{invalid:errors.username}"/>
+  </div>
+  <div class="field">
+    <ol class="form-errors">
+      <li ng-repeat="error in errors.email">{{error}}</li>
+    </ol>
+    <label for="register-email" class="sr-only">e-mail</label>
+    <input type="email" id="register-email" name="email" placeholder="e-mail" ng-model="user.email" ng-disabled="busy" ng-class="{invalid:errors.email}"/>
+  </div>
+  <div class="field">
+    <ol class="form-errors">
+      <li ng-repeat="error in errors.password">{{error}}</li>
+    </ol>
+    <label for="register-password" class="sr-only">password</label>
+    <input type="password" id="register-password" name="password" placeholder="password" ng-model="user.password" ng-disabled="busy" ng-class="{invalid:errors.password}"/>
+  </div>
+  <div class="field">
+    <button type="submit" ng-click="register()" ng-disabled="busy" class="wide"><span ng-hide="busy">register</span><i ng-show="busy" class="fa fa-refresh fa-spin"></i></button>
+    <p class="actions"><a href="/#/login" class="register">Already registered?</a></p>
+  </div>
+</form>

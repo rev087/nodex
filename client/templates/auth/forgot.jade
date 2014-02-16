@@ -1,0 +1,12 @@
+form.user-forgot(ng-controller="ForgotFormController" ng-submit="attemptLogin()")
+	h1 kodex.in
+	ol(flash-messages)
+	div.field
+		label.sr-only(for="login-email") e-mail
+		input(type="email", id="login-email", placeholder="e-mail", ng-model="email", ng-disabled="busy")
+	div.field
+		button.wide(type="submit", mox-button, loading, ng-disabled="busy")
+			span(ng-hide="busy") send password reset
+			i.fa.fa-refresh.fa-spin(ng-show="busy")
+		p.actions
+			a(href="/#/login") Remembered, by any chance?

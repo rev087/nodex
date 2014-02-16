@@ -1,0 +1,59 @@
+.wrapper {
+	max-width: 1170px;
+	margin: 0 auto;
+	.box-sizing(border-box);
+}
+
+.row {
+	width: 100%;
+	.box-sizing(border-box);
+}
+
+.column {
+	float: left;
+	.box-sizing(border-box);
+}
+
+@col-width: 100% / 12;
+.col-1 { .column; width: (@col-width * 1); }
+.col-2 { .column; width: (@col-width * 2); }
+.col-3 { .column; width: (@col-width * 3); }
+.col-4 { .column; width: (@col-width * 4); }
+.col-5 { .column; width: (@col-width * 5); }
+.col-6 { .column; width: (@col-width * 6); }
+.col-7 { .column; width: (@col-width * 7); }
+.col-8 { .column; width: (@col-width * 8); }
+.col-9 { .column; width: (@col-width * 9); }
+.col-10 { .column; width: (@col-width * 10); }
+.col-11 { .column; width: (@col-width * 11); }
+.col-12 { .column; width: (@col-width * 12); }
+
+@screen-small: 768px;
+@screen-medium: 992px;
+@screen-big: 1200px;
+
+@media (max-width: (@screen-small - 1)) { // <= 767
+	// Smartphone
+	.col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
+	.col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+		min-width: 100%;
+	}
+}
+@media (min-width: @screen-small) and (max-width: (@screen-medium - 1) ) { // 768 to 991
+	// Vertical Tablet
+	.col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
+	.col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+	}
+}
+@media (min-width: @screen-medium) and (max-width: (@screen-big - 1)) { // 992 to 1199
+	// Horizontal Tablet, Laptop
+	.col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
+	.col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+	}
+}
+@media (min-width: @screen-big) { // >= 1200
+	// Desktop
+	.col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
+	.col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+	}
+}

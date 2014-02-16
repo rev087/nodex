@@ -1,0 +1,25 @@
+form.user-login, form.user-register, form.user-forgot {
+	max-width: 350px;
+	margin: 0 auto;
+	padding: 0 20px;
+	.box-sizing(border-box);
+
+	.actions a {
+		font-size: @type-size * .9;
+
+		&.forgot { float: right; }
+	}
+
+	.field {
+		margin: 10px 0 0 0;
+	}
+
+	ol.form-errors {
+		padding: 0;
+		margin: 0;
+		color: @state-error;
+		list-style: none;
+		li { font-size: @type-size * .9; }
+	}
+	.invalid { border: 1px solid @state-error; }
+}

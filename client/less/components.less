@@ -1,0 +1,73 @@
+input[type=text],
+input[type=email],
+input[type=password] {
+	border: 0;
+	font-size: 1.1em;
+	background: @doc-muted;
+	padding: (@type-size * .75) @type-size;
+	width: 100%;
+	display: block;
+	border-radius: 0;
+	color: @doc-text;
+	transition: background-color @transition-duration-color;
+	.box-sizing(border-box);
+
+	&:focus {
+		outline: 0;
+		background: @doc;
+	}
+
+}
+
+button {
+	background-color: @action-default;
+	.user-select(none); // prevent selection of the text
+	color: white;
+	border: 0;
+	border-radius: 4px;
+	height: @type-size * 2.5;
+	line-height: @type-size * 2.5;
+	font-size: @type-size;
+	transition: background-color @transition-duration-color;
+	cursor: pointer;
+
+	&:focus, &:hover {
+		outline: none;
+		background-color: darken(@action-default, 10%);
+	}
+	&:active {
+		transition: none;
+		background-color: darken(@action-default, 15%);
+		box-shadow: inset 0 0 4px darken(@action-default, 40%);
+	}
+
+	&.wide {
+		width: 100%;
+	}
+
+	&[disabled] {
+		background-color: desaturate(@action-default, 40%);
+		&:active { box-shadow: none; }
+	}
+}
+
+label.clickable {
+	cursor: pointer;
+	.user-select(none);
+}
+
+a {
+	color: @link;
+	text-decoration: none;
+
+	&:hover { text-decoration: underline; }
+}
+
+ol.flash-messages {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+
+	li.error { color: @state-error; }
+	li.success { color: @state-success; }
+}

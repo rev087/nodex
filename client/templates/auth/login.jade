@@ -1,0 +1,27 @@
+form.user-login(ng-controller="LoginFormController")
+	h1 kodex.in
+	ol(flash-messages context="loginForm")
+	div.field
+		ol.form-errors
+			li(ng-repeat="error in errors.email") {{error}}
+		label.sr-only(for="login-email") e-mail
+		input(type="email", id="login-email", placeholder="e-mail",
+			ng-model="email", ng-disabled="busy", tabindex="1",
+			ng-class="{invalid:errors.email}")
+	div.field
+		ol.form-errors
+			li(ng-repeat="error in errors.password") {{error}}
+		label.sr-only(for="login-password") password
+		input(type="password", id="login-password", placeholder="password",
+			ng-model="password", ng-disabled="busy", tabindex="2",
+			ng-class="{invalid:errors.password}")
+	div.field
+		button.wide(type="submit", ng-disabled="busy", tabindex="4", ng-click="login()")
+			span(ng-hide="busy") login
+			i.fa.fa-refresh.fa-spin(ng-show="busy")
+		p
+			input(type="checkbox", id="login-remember", ng-model="remember", tabindex="3")
+			label.clickable(for="login-remember") Remember me
+		p.actions
+			a.register(href="/#/register", tabindex="5") Register
+			a.forgot(href="/#/forgot", tabindex="6") Forgot your password?
