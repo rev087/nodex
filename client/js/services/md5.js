@@ -192,7 +192,10 @@
 	})
 	.filter('md5', function() {
 		return function(input) {
-			return md5(input);
+			if ( input )
+				return md5(input);
+			else
+				return '';
 		};
 	})
 
