@@ -1,5 +1,6 @@
 // Module dependencies
 var express = require('express');
+var tls = require('tls');
 var https = require('https');
 var http = require('http');
 var path = require('path');
@@ -13,7 +14,6 @@ var db = require('./server/models');
 // App
 var app = express();
 
-// All Environments
 app.set('views', path.join(__dirname, 'server', 'views'));
 app.set('view engine', 'jade');
 app.use(express.logger('dev'));
@@ -36,23 +36,20 @@ app.use(express.cookieSession({
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
 
-/*
 var options = {
 	// SSL
-	key: fs.readFileSync('./config/tls/' + app.get('env') + '/kodex-key.pem'),
-	cert: fs.readFileSync('./config/tls/' + app.get('env') + '/kodex-cert.pem'),
-	requestCert: true
+	key: fs.readFileSync('./config/ssl/' + app.get('env') + '/kodex.key'),
+	cert: fs.readFileSync('./config/ssl/' + app.get('env') + '/kodex.cert'),
+	requestCert: true,
+	rejectUnauthorized: false,
+	requestCert: true,
 };
-*/
 
-// Development only
 if ('development' == app.get('env')) {
 	app.use(express.errorHandler());
-
-	// SSL
-	//options.rejectUnauthorized = false;
-	//options.requestCert = true;
-	//options.agent = false;
+	options.agent = true;
+}
+if ( app.get('env') == 'production' ) {
 }
 
 // Routes
@@ -66,7 +63,7 @@ db
 	if (err) {
 		throw err;
 	} else {
-		http.createServer(app).listen(CONFIG.app.port, function(){
+		https.createServer(options, app).listen(CONFIG.app.port, function(){
 			console.log( 'Express server listening on port ' + CONFIG.app.port +
 				' in ' + app.get('env') + ' mode');
 		});
