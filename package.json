@@ -1,32 +1,42 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node app.js"
-  },
-  "dependencies": {
-    "express": "~3.4.8",
-    "jade": "~1.1.5",
-    "sequelize": "~1.7.0-rc3",
-    "pg": "~2.11.1",
-    "bcrypt": "~0.7.7",
-    "config": "~0.4.35",
-    "lodash": "~2.4.1",
-    "q": "~1.0.0",
-    "validator": "~3.2.1",
-    "mandrill-api": "~1.0.39"
-  },
-  "devDependencies": {
-    "grunt-cli": "~0.1.13",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-less": "~0.9.0",
-    "grunt-contrib-jade": "~0.9.1",
-    "grunt-angular-templates": "~0.5.1",
-    "grunt-contrib-copy": "~0.5.0",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-uglify": "~0.3.2",
-    "bower": "~1.2.8"
-  }
+	"name": "application-name",
+	"version": "0.0.1",
+	"private": true,
+	"author": "Bruno Daniel <bruno@vault7.com>",
+	"description": "snippet manager and personal wiki",
+	"keywords": [
+		"snippet", "manager", "personal", "wiki"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/rev087/kodex.git"
+	},
+	"homepage": "https://github.com/rev087/kodex",
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies": {
+		"express": "~3.4.8",
+		"jade": "~1.1.5",
+		"sequelize": "~1.7.0-rc3",
+		"pg": "~2.11.1",
+		"bcrypt": "~0.7.7",
+		"config": "~0.4.35",
+		"lodash": "~2.4.1",
+		"q": "~1.0.0",
+		"validator": "~3.2.1",
+		"mandrill-api": "~1.0.39"
+	},
+	"devDependencies": {
+		"grunt-cli": "~0.1.13",
+		"grunt-contrib-concat": "~0.3.0",
+		"grunt-contrib-watch": "~0.5.3",
+		"grunt-contrib-less": "~0.9.0",
+		"grunt-contrib-jade": "~0.9.1",
+		"grunt-angular-templates": "~0.5.1",
+		"grunt-contrib-copy": "~0.5.0",
+		"grunt-contrib-clean": "~0.5.0",
+		"grunt-contrib-uglify": "~0.3.2",
+		"bower": "~1.2.8"
+	}
 }
