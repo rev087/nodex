@@ -2,3 +2,6 @@ bower_components
 node_modules
 config/*
 !config/default.json
+public/js
+public/css
+public/templates
