@@ -1,4 +1,4 @@
-# codex
+# Kodex
 
 ## Installation
 
@@ -12,12 +12,6 @@
 3. Build the JS and CSS assets with `grunt concat`
 4. Start the application server with `nodemon app.js`
 5. Run `grunt watch`
-
-## Credits
-
-* da-vinci-codex.jpg
-	* Codex flight of the birds by Leonardo da Vinci
-	* Photography by Luc Viatour / www.Lucnix.be
 
 ## License
 
