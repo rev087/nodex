@@ -49,7 +49,7 @@ if ('development' == app.get('env')) {
 	options.agent = true;
 }
 if ( app.get('env') == 'production' ) {
-	options.ca = [fs.readFileSync('./config/ssl/' + app.get('env') + CONFIG.ssl.ca)];
+	options.ca = [fs.readFileSync('./config/ssl/' + app.get('env') + '/' + CONFIG.ssl.ca)];
 }
 
 // Routes
