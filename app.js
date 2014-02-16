@@ -1,6 +1,5 @@
 // Module dependencies
 var express = require('express');
-var tls = require('tls');
 var https = require('https');
 var http = require('http');
 var path = require('path');
@@ -38,8 +37,8 @@ app.use(app.router);
 
 var options = {
 	// SSL
-	key: fs.readFileSync('./config/ssl/' + app.get('env') + '/kodex.key'),
-	cert: fs.readFileSync('./config/ssl/' + app.get('env') + '/kodex.cert'),
+	key: fs.readFileSync('./config/ssl/' + app.get('env') + '/' + CONFIG.ssl.key),
+	cert: fs.readFileSync('./config/ssl/' + app.get('env') + '/' + CONFIG.ssl.cert),
 	requestCert: true,
 	rejectUnauthorized: false,
 	requestCert: true,
@@ -50,22 +49,36 @@ if ('development' == app.get('env')) {
 	options.agent = true;
 }
 if ( app.get('env') == 'production' ) {
+	options.ca = [fs.readFileSync('./config/ssl/' + app.get('env') + CONFIG.ssl.ca)];
 }
 
 // Routes
 require('./server/routes')(app);
+
+console.log('PORT', CONFIG.app.httpsPort);
 
 // Connect to the database and start the webserver
 db
 	.sequelize
 	.sync()
 	.complete(function(err) {
-	if (err) {
-		throw err;
-	} else {
-		https.createServer(options, app).listen(CONFIG.app.port, function(){
-			console.log( 'Express server listening on port ' + CONFIG.app.port +
-				' in ' + app.get('env') + ' mode');
-		});
-	}
+		if (err) {
+			console.log(err);
+			throw err;
+		} else {
+			https.createServer(options, app).listen(CONFIG.app.httpsPort, function(){
+				console.log( 'Express server listening on port ' + CONFIG.app.httpsPort +
+					' in ' + app.get('env') + ' mode');
+			});
+		}
+	});
+
+// Redirect all HTTP requests to HTTPS
+var app2 = express();
+app2.use(function(req, res) {
+	res.redirect('https://' + req.host + ':' + CONFIG.app.httpsPort + req.url);
+});
+http.createServer(app2).listen(CONFIG.app.httpPort, function() {
+	console.log( 'Express server listening on port ' + CONFIG.app.httpPort +
+		' in ' + app.get('env') + ' mode');
 });
