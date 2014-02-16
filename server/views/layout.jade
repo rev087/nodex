@@ -16,7 +16,7 @@ html(xmlns:ng="http://angularjs.org" id="ng-app" ng-app="kodex")
 		script(src='/js/kodex.js')
 		script(src='/js/kodex.templates.js')
 		if process.env.NODE_ENV == 'development'
-			script(src="http://192.168.0.7:35729/livereload.js?snipver=1")
+			script(src="http://192.168.0.3:35729/livereload.js?snipver=1")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
 	body
 		nav(ng-show="user.username")
@@ -26,7 +26,7 @@ html(xmlns:ng="http://angularjs.org" id="ng-app" ng-app="kodex")
 			a(href="/#/not-found") Not Found
 			div.push-right
 				span {{user.username}}
-				img.avatar(ng-src="http://www.gravatar.com/avatar/{{user.email | md5}}?s=32")
+				img.avatar(ng-src="https://www.gravatar.com/avatar/{{user.email | md5}}?s=32")
 		nav(ng-show="!user.username")
 			a(href="/#/login") Login
 		div(ng-view) loading...
