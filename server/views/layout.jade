@@ -1,5 +1,5 @@
 doctype html
-html(xmlns:ng="http://angularjs.org" id="ng-app" ng-app="kodex")
+html(xmlns:ng="http://angularjs.org" id="ng-app" ng-app="kodex", lang="en")
 	head
 		title {{ title }}
 		<!--[if lte IE 8]>
@@ -8,7 +8,9 @@ html(xmlns:ng="http://angularjs.org" id="ng-app" ng-app="kodex")
 		<!--[if lt IE 9]>
 		<script src="/js/polyfills/html5shiv.js" />
 		<script src="/js/polyfills/es6-shim.js" />
+		<script src="/js/polyfills/respond.js" />
 		<![endif]-->
+		meta(charset="utf-8")
 		link(rel='stylesheet', href='/css/vendor.css')
 		link(rel='stylesheet', href='/css/kodex.css')
 		link(rel='shortcut icon', href='/img/favicon.png')
@@ -19,14 +21,39 @@ html(xmlns:ng="http://angularjs.org" id="ng-app" ng-app="kodex")
 			script(src="http://192.168.0.3:35729/livereload.js?snipver=1")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
 	body
-		nav(ng-show="user.username")
-			a(href="/#/") Home
-			a(href="/#/dashboard") Dashboard
-			a(href="/#/logout") Logout
-			a(href="/#/not-found") Not Found
-			div.push-right
-				span {{user.username}}
-				img.avatar(ng-src="https://www.gravatar.com/avatar/{{user.email | md5}}?s=32")
-		nav(ng-show="!user.username")
-			a(href="/#/login") Login
-		div(ng-view) loading...
+		header.navbar.navbar-default(role="navigation")
+			div.container-fluid
+
+				// Brand and toggle get grouped for better mobile display
+				div.navbar-header
+					button.navbar-toggle(data-toggle="collapse", data-target="#navbar-main-collapse")
+						i.fa.fa-bars
+					a.navbar-brand(href="/#/") kodex
+
+				// Collapsible content in narrow viewports
+				div.collapse.navbar-collapse#navbar-main-collapse
+
+					// Main links (authenticated users only)
+					ul.nav.navbar-nav(ng-show="user.username")
+						li
+							a(href="/#/") Home
+						li
+							a(href="/#/not-found") Not Found
+
+					// User controls (authenticated users only)
+					ul.nav.navbar-nav.navbar-right(ng-show="user.username")
+						li.divider
+						li
+							a.dropdown-toggle.user-dropdown(href="/#/", data-toggle="dropdown") {{user.email}} 
+								b.caret
+								img.avatar(ng-src="https://www.gravatar.com/avatar/{{user.email | md5}}?s=32")
+							ul.dropdown-menu(role="menu")
+								li
+									a(href="/#/logout") Logout
+
+					// Login link (anonimous users only)
+					ul.nav.navbar-nav.navbar-right(ng-show="!user.username")
+						li
+							a(href="/#/login") Login
+
+		div.container-fluid(ng-view) loading...
