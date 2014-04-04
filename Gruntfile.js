@@ -5,6 +5,7 @@ module.exports = function(grunt) {
 	// Project configuration
 	grunt.initConfig({
 		clean: {
+			fonts: ['public/fonts/'],
 			ngtemplates: ['public/templates/'],
 			js: ['public/js/'],
 			css: ['public/css/']
@@ -20,9 +21,28 @@ module.exports = function(grunt) {
 					'bower_components/es6-shim/es6-shim.js',
 
 					'public/js/polyfills/json2.js':
-					'bower_components/json2/json2.js'
+					'bower_components/json2/json2.js',
+
+					'public/js/polyfills/respond.js':
+					'bower_components/respond/dest/respond.min.js'
 				}
 			},
+			fonts: {
+				files: [
+					{
+						expand: true,
+						cwd: 'bower_components/font-awesome/fonts/',
+						src: '*.*',
+						dest: 'public/fonts'
+					},
+					{
+						expand: true,
+						cwd: 'bower_components/bootstrap/dist/fonts/',
+						src: '*.*',
+						dest: 'public/fonts'
+					}
+				]
+			}
 		},
 		less: {
 			compile: {
@@ -41,6 +61,7 @@ module.exports = function(grunt) {
 			css: {
 				files: {
 					'public/css/vendor.css': [
+						'bower_components/bootstrap/dist/css/bootstrap.css',
 						'bower_components/normalize-css/normalize.css',
 						'bower_components/font-awesome/css/font-awesome.css',
 						'bower_components/angular/angular-csp.css'
@@ -52,7 +73,9 @@ module.exports = function(grunt) {
 			vendor: {
 				files: {
 					'public/js/vendor.js': [
+						'bower_components/jquery/dist/jquery.js',
 						'bower_components/angular/angular.js',
+						'bower_components/bootstrap/dist/js/bootstrap.js',
 						'bower_components/angular-route/angular-route.js',
 						'bower_components/angular-cookies/angular-cookies.js'
 					]
