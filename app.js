@@ -55,8 +55,6 @@ if ( app.get('env') == 'production' ) {
 // Routes
 require('./server/routes')(app);
 
-console.log('PORT', CONFIG.app.httpsPort);
-
 // Connect to the database and start the webserver
 db
 	.sequelize
@@ -66,19 +64,29 @@ db
 			console.log(err);
 			throw err;
 		} else {
-			https.createServer(options, app).listen(CONFIG.app.httpsPort, function(){
-				console.log( 'Express server listening on port ' + CONFIG.app.httpsPort +
-					' in ' + app.get('env') + ' mode');
-			});
+			if ( CONFIG.ssl.enabled ) {
+				https.createServer(options, app).listen(CONFIG.app.httpsPort, function(){
+					console.log( 'Express server listening on port ' + CONFIG.app.httpsPort +
+						' in ' + app.get('env') + ' mode');
+				});
+			} else {
+				http.createServer(app).listen(CONFIG.app.httpPort, function(){
+					console.log( 'Express server listening on port ' + CONFIG.app.httpPort +
+						' in ' + app.get('env') + ' mode');
+				});
+			}
 		}
 	});
 
-// Redirect all HTTP requests to HTTPS
-var app2 = express();
-app2.use(function(req, res) {
-	res.redirect('https://' + req.host + ':' + CONFIG.app.httpsPort + req.url);
-});
-http.createServer(app2).listen(CONFIG.app.httpPort, function() {
-	console.log( 'Express server listening on port ' + CONFIG.app.httpPort +
-		' in ' + app.get('env') + ' mode');
-});
+if ( !!CONFIG.ssl.enabled )
+{
+	// Redirect all HTTP requests to HTTPS
+	var app2 = express();
+	app2.use(function(req, res) {
+		res.redirect('https://' + req.host + ':' + CONFIG.app.httpsPort + req.url);
+	});
+	http.createServer(app2).listen(CONFIG.app.httpPort, function() {
+		console.log( 'Express server listening on port ' + CONFIG.app.httpPort +
+			' in ' + app.get('env') + ' mode');
+	});
+}
